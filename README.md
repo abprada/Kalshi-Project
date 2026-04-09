@@ -25,6 +25,10 @@ One row per trade execution — the full tick-by-tick history of every transacti
 
 ### `trade_timeseries_1min.parquet`
 1-minute resampled time series per ticker, derived from `all_trades`:
+- `ticker` — Contract ticker
 - `last_yes_price` — last trade price in each minute
 - `vwap_yes` — volume-weighted average price
 - `n_trades` — number of trades in the minute
+
+# Notes Andres
+- Non-traded contracts typically a price of 0, have to remove those without removing settled contracts at 0
