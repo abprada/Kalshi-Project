@@ -89,3 +89,30 @@ The bar construction (steps 1–4) is checkpointed to `bars_clean.parquet`. Subs
 
 - Windows longer than 90 real minutes are rejected so sparse tickers with large inactivity gaps don't produce misleading inputs.
 - The flat-price pattern in illiquid markets inflates AUC: the CNN learns that any tick after a long quiet period is a jump. These windows should be filtered or discounted in the next milestone.
+
+---
+
+## Milestone 4 (MS4): Mixture of Experts — instructions for course staff
+
+This milestone is delivered as a **main Colab notebook** plus **large artifacts on Google Drive** (parquet tables, trained checkpoints, caches). The notebook is self-documenting (table of contents, folder layout, and a **TF setup** cell).
+
+**Teaching staff — Drive is optional for review.** You can read the submitted notebook (method, code, and saved outputs) without copying anything from Drive. **Only download or copy the Drive `project` folder if you want to re-run cells**; the bundle is **larger than 10 GB**.
+
+### Shared Drive folder (data + models + notebook)
+
+**Folder:** [project — Google Drive](https://drive.google.com/drive/folders/1bwPVZxxEhNfPodRlXFBZV-RKXiuSnlkq?usp=sharing)
+
+Expected top-level contents: `data/`, `models/` (under `data/` as in the notebook), `moe_cache/`, `notebooks/`, and at the project root `requirements.txt` (and the main notebook under `notebooks/`).
+
+### What course staff should do
+
+1. **Default (read-only):** Open `notebooks/cs1090b_ms4_main_group52.ipynb` from the submission (e.g. GitHub preview, downloaded `.ipynb`, or Colab upload of the file alone). No Drive access required to see what we did.
+2. **Only if re-running:** Open the [Drive folder](https://drive.google.com/drive/folders/1bwPVZxxEhNfPodRlXFBZV-RKXiuSnlkq?usp=sharing) and copy the entire **`project`** tree into **your own** Google Drive (for example **Organize → Add shortcut to Drive** or duplicate into `MyDrive`). Then open the notebook in Colab from that tree.
+3. **Run the TF setup cell** near the top of the notebook (after the table of contents). It mounts Drive (on Colab), sets `PROJECT_ROOT`, and installs from `requirements.txt` if that file sits next to `data/` and `notebooks/`.
+4. If your copy of `project` is **not** at `MyDrive/CS1090B/project`, **edit `PROJECT_ROOT`** in that setup cell to the path of the folder that contains both `data/` and `notebooks/`.
+5. Run the rest **top to bottom** (for example **Runtime → Run all**). **Do not** run the other experimental notebooks in `notebooks/` unless you intend to regenerate intermediates; the main notebook states this in its disclaimer.
+
+### GitHub vs. Drive
+
+- **Drive** holds everything needed to **execute** MS4 (data, checkpoints, caches, notebook, `requirements.txt`).
+- **GitHub** (this repo or a small spin-off) is useful for **version history and code review** of the notebook and `requirements.txt`. It is **not** required to reproduce runs if staff use Drive only.
